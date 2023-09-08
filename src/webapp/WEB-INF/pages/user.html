@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html xmlns="http://www.w3.org/1999/xhtml" xmlns:th="http://www.thymeleaf.org">
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title th:text="${user.getName()} + ' ' + ${user.getLastname()}"></title>
+</head>
+<body>
+<table>
+    <tr>
+        <td>IDs:</td>
+        <td th:text="${user.getId()}"></td>
+    </tr>
+    <tr>
+        <td>Name:</td>
+        <td th:text="${user.getName()}"></td>
+    </tr>
+    <tr>
+        <td>Lastname:</td>
+        <td th:text="${user.getLastname()}"></td>
+    </tr>
+</table>
+<a href="/users">Go back to all users<a/>
+</body>
+</html>
