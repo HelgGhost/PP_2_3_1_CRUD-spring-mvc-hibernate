@@ -13,17 +13,17 @@ import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
+@Transactional (readOnly = true)
 public class UserServiceDAOMySQL implements UserServiceDAO {
     @PersistenceContext
     private EntityManager entityManager;
 
-    @Transactional
+
     @Override
     public List<User> getAll() {
         return entityManager.createQuery("select u from User as u").getResultList();
     }
 
-    @Transactional
     @Override
     public User getById(Long id) {
         return entityManager.find(User.class, id);
