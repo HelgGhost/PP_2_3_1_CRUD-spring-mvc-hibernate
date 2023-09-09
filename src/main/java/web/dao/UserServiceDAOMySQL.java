@@ -26,24 +26,24 @@ public class UserServiceDAOMySQL implements UserServiceDAO {
     @Transactional
     @Override
     public User getById(Long id) {
-        return null;
+        return entityManager.find(User.class, id);
     }
 
     @Transactional
     @Override
     public void add(User user) {
-        //sessionFactory.getCurrentSession().save(user);
+        entityManager.merge(user);
     }
 
     @Transactional
     @Override
     public void update(Long id, User user) {
-        //sessionFactory.getCurrentSession().update(user);
+        entityManager.merge(user);
     }
 
     @Transactional
     @Override
     public void delete(Long id) {
-        //sessionFactory.getCurrentSession().delete(getById(id));
+        entityManager.remove(getById(id));
     }
 }
