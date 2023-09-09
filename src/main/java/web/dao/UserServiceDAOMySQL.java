@@ -7,23 +7,20 @@ import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 
+import javax.persistence.EntityManager;
+import javax.persistence.PersistenceContext;
 import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
 public class UserServiceDAOMySQL implements UserServiceDAO {
-    private final LocalContainerEntityManagerFactoryBean entityManager;
-    @Autowired
-    public UserServiceDAOMySQL(LocalContainerEntityManagerFactoryBean entityManager) {
-        this.entityManager = entityManager;
-    }
+    @PersistenceContext
+    private EntityManager entityManager;
 
     @Transactional
     @Override
     public List<User> getAll() {
-        entityManager.sa
-        TypedQuery<User> query=sessionFactory.getCurrentSession().createQuery("from User");
-        return query.getResultList();
+        return entityManager.createQuery("select u from User as u").getResultList();
     }
 
     @Transactional
