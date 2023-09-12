@@ -1,14 +1,16 @@
-package web.dao;
+package web.test;
 
-import org.springframework.stereotype.Repository;
+import web.dao.UserServiceDAO;
 import web.model.User;
 
 import java.util.ArrayList;
 import java.util.List;
+
 //@Repository
-public class UserServiceDAOTestArray implements UserServiceDAO {
+public class UserServiceDAOArrayTest implements UserServiceDAO {
     private static Long LASTID = 0L;
     private List<User> users;
+
     {
         users = new ArrayList<>();
         users.add(new User(++LASTID, "Vasya", "Bobikov"));
@@ -24,7 +26,7 @@ public class UserServiceDAOTestArray implements UserServiceDAO {
     }
 
     @Override
-    public User getById(Long id) {
+    public User get(Long id) {
         return users.stream().filter(user -> user.getId().equals(id)).findAny().orElse(null);
     }
 
@@ -35,7 +37,8 @@ public class UserServiceDAOTestArray implements UserServiceDAO {
 
     @Override
     public void update(Long id, User user) {
-        getById(id).update(user);
+        get(id).setName(user.getName());
+        get(id).setLastname(user.getLastname());
     }
 
     @Override

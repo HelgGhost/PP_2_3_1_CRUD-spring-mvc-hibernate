@@ -1,19 +1,15 @@
 package web.dao;
 
-import org.hibernate.SessionFactory;
-import org.springframework.beans.factory.annotation.Autowired;
-import org.springframework.orm.jpa.LocalContainerEntityManagerFactoryBean;
 import org.springframework.stereotype.Repository;
 import org.springframework.transaction.annotation.Transactional;
 import web.model.User;
 
 import javax.persistence.EntityManager;
 import javax.persistence.PersistenceContext;
-import javax.persistence.TypedQuery;
 import java.util.List;
 
 @Repository
-@Transactional (readOnly = true)
+@Transactional(readOnly = true)
 public class UserServiceDAOMySQL implements UserServiceDAO {
     @PersistenceContext
     private EntityManager entityManager;
@@ -25,7 +21,7 @@ public class UserServiceDAOMySQL implements UserServiceDAO {
     }
 
     @Override
-    public User getById(Long id) {
+    public User get(Long id) {
         return entityManager.find(User.class, id);
     }
 
@@ -44,6 +40,6 @@ public class UserServiceDAOMySQL implements UserServiceDAO {
     @Transactional
     @Override
     public void delete(Long id) {
-        entityManager.remove(getById(id));
+        entityManager.remove(get(id));
     }
 }

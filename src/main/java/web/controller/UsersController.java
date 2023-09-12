@@ -18,41 +18,43 @@ public class UsersController {
     }
 
     @GetMapping()
-    public String allUsers(ModelMap model) {
+    public String showUsers(ModelMap model) {
         model.addAttribute("users", userService.getAll());
         return "users";
     }
 
     @GetMapping("/{id}")
-    public String getUserById(@PathVariable("id") Long id, ModelMap model) {
-        model.addAttribute("user", userService.getById(id));
+    public String showUser(@PathVariable("id") Long id, ModelMap model) {
+        model.addAttribute("user", userService.get(id));
         return "user";
     }
 
     @GetMapping("/new")
-    public String newUser(ModelMap model) {
+    public String showNew(ModelMap model) {
         model.addAttribute("user", new User());
         return "new";
     }
 
     @PostMapping()
-    public String addUser(@ModelAttribute("user") User user) {
+    public String addUserRedirectUsers(@ModelAttribute("user") User user) {
         userService.add(user);
         return "redirect:/users";
     }
 
     @GetMapping("/{id}/edit")
-    public String editUserById(@PathVariable("id") Long id, ModelMap model) {
-        model.addAttribute("user", userService.getById(id));
+    public String showEdit(@PathVariable("id") Long id, ModelMap model) {
+        model.addAttribute("user", userService.get(id));
         return "edit";
     }
+
     @PatchMapping("/{id}")
-    public String updateUser(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
+    public String updateUserRedirectUsers(@ModelAttribute("user") User user, @PathVariable("id") Long id) {
         userService.update(id, user);
         return "redirect:/users";
     }
+
     @DeleteMapping("/{id}")
-    public String deleteUser(@PathVariable("id") Long id) {
+    public String deleteUserRedirectUsers(@PathVariable("id") Long id) {
         userService.delete(id);
         return "redirect:/users";
     }

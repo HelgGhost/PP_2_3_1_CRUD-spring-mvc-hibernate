@@ -6,9 +6,11 @@ import web.dao.UserServiceDAO;
 import web.model.User;
 
 import java.util.List;
+
 @Service
 public class UserServiceImpl implements UserService {
     private final UserServiceDAO userServiceDAO;
+
     @Autowired
     public UserServiceImpl(UserServiceDAO userServiceDAO) {
         this.userServiceDAO = userServiceDAO;
@@ -20,8 +22,8 @@ public class UserServiceImpl implements UserService {
     }
 
     @Override
-    public User getById(Long id) {
-        return userServiceDAO.getById(id);
+    public User get(Long id) {
+        return userServiceDAO.get(id);
     }
 
     @Override

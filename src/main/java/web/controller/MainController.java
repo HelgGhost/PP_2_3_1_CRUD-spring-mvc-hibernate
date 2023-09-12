@@ -10,9 +10,9 @@ import java.util.List;
 @Controller
 public class MainController {
 
-	@GetMapping(value = "/")
-	public String printWelcome(ModelMap model) {
-		return "redirect:users";
-	}
-	
+    @GetMapping(value = "/")
+    public String mainPageRedirectUsers(ModelMap model) {
+        return "redirect:users";
+    }
+
 }

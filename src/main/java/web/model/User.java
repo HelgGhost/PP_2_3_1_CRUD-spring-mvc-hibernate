@@ -6,7 +6,6 @@ import java.util.Objects;
 @Entity
 @Table(name = "users")
 public class User {
-    @Column
     @Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
     private Long id;
@@ -17,6 +16,7 @@ public class User {
 
     public User() {
     }
+
     public User(Long id, String name, String lastName) {
         this.id = id;
         this.name = name;
@@ -45,11 +45,6 @@ public class User {
 
     public void setLastname(String lastname) {
         this.lastname = lastname;
-    }
-
-    public void update(User user) {
-        name = user.name;
-        lastname = user.lastname;
     }
 
     @Override
