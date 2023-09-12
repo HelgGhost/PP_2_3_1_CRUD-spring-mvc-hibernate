@@ -28,7 +28,7 @@ public class UserServiceDAOMySQL implements UserServiceDAO {
     @Transactional
     @Override
     public void add(User user) {
-        entityManager.merge(user);
+        entityManager.persist(user);
     }
 
     @Transactional
