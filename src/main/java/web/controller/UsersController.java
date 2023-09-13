@@ -18,19 +18,19 @@ public class UsersController {
     }
 
     @GetMapping()
-    public String showUsers(ModelMap model) {
+    public String showUsersPage(ModelMap model) {
         model.addAttribute("users", userService.getAll());
         return "users";
     }
 
     @GetMapping("/{id}")
-    public String showUser(@PathVariable("id") Long id, ModelMap model) {
+    public String showUserPage(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("user", userService.get(id));
         return "user";
     }
 
     @GetMapping("/new")
-    public String showNew(ModelMap model) {
+    public String showNewPage(ModelMap model) {
         model.addAttribute("user", new User());
         return "new";
     }
@@ -42,7 +42,7 @@ public class UsersController {
     }
 
     @GetMapping("/{id}/edit")
-    public String showEdit(@PathVariable("id") Long id, ModelMap model) {
+    public String showEditPage(@PathVariable("id") Long id, ModelMap model) {
         model.addAttribute("user", userService.get(id));
         return "edit";
     }
